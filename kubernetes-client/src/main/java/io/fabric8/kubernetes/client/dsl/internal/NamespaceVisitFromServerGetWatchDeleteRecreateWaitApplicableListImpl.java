@@ -17,6 +17,8 @@ package io.fabric8.kubernetes.client.dsl.internal;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.mifmif.common.regex.Generex;
+
+import io.fabric8.kubernetes.api.builder.Builder;
 import io.fabric8.kubernetes.api.builder.TypedVisitor;
 import io.fabric8.kubernetes.api.builder.VisitableBuilder;
 import io.fabric8.kubernetes.api.builder.Visitor;
@@ -322,7 +324,7 @@ Waitable<List<HasMetadata>, HasMetadata>, Readiable {
                     HasMetadata edited = reloaded;
                     //Let's apply any visitor that might have been specified.
                     for (Visitor v : visitors) {
-                        h.edit(edited).accept(v).build();
+                        ((Builder) h.edit(edited).accept(v)).build();
                     }
                     result.add(reloaded);
                 }

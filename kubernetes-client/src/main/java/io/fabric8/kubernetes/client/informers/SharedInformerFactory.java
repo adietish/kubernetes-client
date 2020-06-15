@@ -200,7 +200,7 @@ public class SharedInformerFactory extends BaseOperation {
 
     informers.forEach(
       (informerType, informer) ->
-          startedInformers.computeIfAbsent(informerType, key -> informerExecutor.submit(informer::run)));
+          startedInformers.computeIfAbsent(informerType, key -> informerExecutor.submit((Runnable) informer::run)));
   }
 
   /**

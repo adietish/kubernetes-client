@@ -105,3 +105,4 @@ kubernetes-model/kubernetes-model-core/generate
 kubernetes-model/kubernetes-model-apps/generate
 extensions/tekton/generator/generate
 extensions/knative/generator/generate
+/.metadata/

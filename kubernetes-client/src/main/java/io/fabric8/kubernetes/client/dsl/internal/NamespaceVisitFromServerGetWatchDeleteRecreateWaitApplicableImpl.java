@@ -31,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import io.fabric8.kubernetes.api.builder.Builder;
 import io.fabric8.kubernetes.api.builder.TypedVisitor;
 import io.fabric8.kubernetes.api.builder.VisitableBuilder;
 import io.fabric8.kubernetes.api.builder.Visitor;
@@ -179,7 +180,7 @@ public class NamespaceVisitFromServerGetWatchDeleteRecreateWaitApplicableImpl ex
         HasMetadata edited = reloaded;
         //Let's apply any visitor that might have been specified.
         for (Visitor v : visitors) {
-          edited = h.edit(edited).accept(v).build();
+          edited = ((Builder<HasMetadata>) h.edit(edited).accept(v)).build();
         }
         return edited;
       }
